@@ -2,7 +2,7 @@ package tiggi.coindispenser;
 
 public class Authenticator {
 
-    public static boolean auth(String user, String pass) {
+    public boolean auth(String user, String pass) {
 
         // Authenticate with backend
 

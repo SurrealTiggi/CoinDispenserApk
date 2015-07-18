@@ -4,4 +4,30 @@
     tools:context="tiggi.coindispenser.PaymentActivity"
     android:background="@drawable/background" >
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EXIT"
+        android:id="@+id/exitButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:background="#ff2775ff"
+        android:clickable="true"
+        android:elegantTextHeight="true"
+        android:enabled="true"
+        android:textSize="30dp"
+        android:textColor="#50ffffff"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/changeTextView"
+        android:textSize="50dp"
+        android:textIsSelectable="true"
+        android:text="R 0.00"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="128dp" />
+
 </RelativeLayout>

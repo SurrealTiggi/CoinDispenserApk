@@ -9,6 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/* To do
+1) Tidy up
+2) Integrate non activity classes with backend
+2) Ensure any requests that get no data OR timeout to backend have default values to avoid errors
+3) Display error for above
+ */
 
 public class LandingLogin extends ActionBarActivity {
 
@@ -38,14 +44,14 @@ public class LandingLogin extends ActionBarActivity {
 
                 int counter = 0;
                 if(user.equals("") || pass.equals("")) {
-                    Toast.makeText(getApplicationContext(),"You have not entered any credentials, please try again...",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"You have not entered any credentials, please try again...",Toast.LENGTH_SHORT).show();
                     counter++;
                 } else if (mLetMeIn.auth(user, pass)) {
                     Toast.makeText(getApplicationContext(), "Congrats! Going through.", Toast.LENGTH_SHORT).show();
                     counter = 0;
                     startBill();
                 } else {
-                    Toast.makeText(LandingLogin.this, "Askies, wrong credentials.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LandingLogin.this, "Askies, wrong credentials.", Toast.LENGTH_SHORT).show();
                     // Clear text fields;
                     counter++;
                 }
