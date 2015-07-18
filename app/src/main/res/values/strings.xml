@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CoinDispenser</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_bill">BillActivity</string>
+    <string name="key_bill">Bill</string>
+    <string name="key_payment">Payment</string>
+    <string name="title_activity_payment">PaymentActivity</string>
+</resources>
