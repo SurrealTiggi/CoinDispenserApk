@@ -7,4 +7,5 @@
     <string name="key_bill">Bill</string>
     <string name="key_payment">Payment</string>
     <string name="title_activity_payment">PaymentActivity</string>
+    <string name="key_webserver">http://surrealtiggi.asuscomm.com/CoinDispenser/rest</string>
 </resources>

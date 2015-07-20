@@ -9,6 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
 /* To do
 1) Tidy up
 2) Integrate non activity classes with backend
@@ -42,18 +46,37 @@ public class LandingLogin extends ActionBarActivity {
                 String user = mUserName.getText().toString();
                 String pass = mPassWord.getText().toString();
 
-                int counter = 0;
                 if(user.equals("") || pass.equals("")) {
-                    Toast.makeText(getApplicationContext(),"You have not entered any credentials, please try again...",Toast.LENGTH_SHORT).show();
-                    counter++;
-                } else if (mLetMeIn.auth(user, pass)) {
-                    Toast.makeText(getApplicationContext(), "Congrats! Going through.", Toast.LENGTH_SHORT).show();
-                    counter = 0;
-                    startBill();
-                } else {
-                    Toast.makeText(LandingLogin.this, "Askies, wrong credentials.", Toast.LENGTH_SHORT).show();
-                    // Clear text fields;
-                    counter++;
+                    Toast.makeText(getApplicationContext(),"You have not entered all necessary credentials, please try again...",Toast.LENGTH_SHORT).show();
+                    mUserName.setText("");
+                    mPassWord.setText("");
+                }
+
+                else {
+                    //Authenticator response = (Authenticator) new Authenticator().execute(user, pass);
+                    Authenticator response = new Authenticator();
+                    Log.d(TAG, "Starting auth thread...");
+                    response.execute(user, pass);
+
+                    try {
+                        response.get(10000, TimeUnit.MILLISECONDS);
+                    } catch (Exception e) {
+                        Log.e(TAG, String.valueOf(e));
+                    }
+
+                    Log.d(TAG, "Async task is currently >> " + String.valueOf(response.getStatus()));
+
+                    Log.d(TAG, "Checking auth boolean >> " + response.yayOrNay);
+
+                    if(response.yayOrNay) {
+                        Toast.makeText(LandingLogin.this, "Congrats! Going through.", Toast.LENGTH_SHORT).show();
+                        startBill();
+                    }
+                    else {
+                        Toast.makeText(LandingLogin.this, "Askies, wrong credentials.", Toast.LENGTH_SHORT).show();
+                        mUserName.setText("");
+                        mPassWord.setText("");
+                    }
                 }
             }
         });
